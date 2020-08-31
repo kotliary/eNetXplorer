@@ -1,0 +1,14 @@
+citHeader("To cite eNetXplorer in publications use:")
+
+citEntry(entry="Article",
+title   = "eNetXplorer: an R package for the quantitative exploration of elastic net families for generalized linear models",
+author  = personList(as.person("Julian Candia"),
+                    as.person("John S. Tsang")),
+journal = "BMC Bioinformatics",
+year    = "2019",
+volume  = "20",
+pages   = "189",
+textVersion =
+paste("Julian Candia and John S. Tsang",
+      "eNetXplorer: an R package for the quantitative exploration of elastic net families for generalized linear models,","BMC Bioinformatics (2019) 20:189")
+)
