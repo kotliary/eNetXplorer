@@ -1,6 +1,6 @@
 # Gaussian model
 eNetXplorerGaussian <- function(x, y, family, alpha, nlambda, nlambda.ext, seed, scaled,
-n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, ...)
+n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, fold.FUN = generateFoldID, ...)
 {
     n_instance = nrow(x)
     n_feature = ncol(x)
@@ -39,18 +39,8 @@ n_fold, n_run, n_perm_null, save_lambda_QF_full, QF.FUN, QF_label, cor_method, .
         }
     }
     
-    foldid = NULL # we determine the fold template
-    fold_size = floor(n_instance/n_fold)
-    for (i_fold in 1:n_fold) {
-        foldid = c(foldid,rep(i_fold,fold_size))
-    }
-    fold_rest = n_instance%%n_fold
-    if (fold_rest>0) {
-        for (i_fold in 1:fold_rest) {
-            foldid = c(foldid,i_fold)
-        }
-    }
-    
+    foldid = fold.FUN(n_instance, n_fold)
+
     n_alpha = length(alpha)
     n_alpha_eff = 0
     best_lambda = rep(NA,n_alpha)
